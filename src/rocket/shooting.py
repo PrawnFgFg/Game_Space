@@ -31,16 +31,3 @@ async def fire(canvas, start_row, start_column, rows_speed=-0.3, columns_speed=0
         row += rows_speed
         column += columns_speed
 
-
-
-
-    # try:
-    #     for shoot in fire_shootings.copy():
-    #         shoot.send(None)
-    #         canvas.refresh()
-    # except StopIteration:
-    #     fire_shootings.remove(shoot)
-    #     continue
-    # time.sleep(0.1)
-    # # if len(fire_shootings) == 0:
-    # #     continue
