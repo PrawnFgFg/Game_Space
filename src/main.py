@@ -18,7 +18,8 @@ def get_starry_sky(canvas, height, weidth):
     many_stars_blink = [blink(canvas=canvas, 
             row=random.randint(1, height-2), 
             column=random.randint(1,weidth-2),
-            symbol=random.choice(cosmo_items)) 
+            symbol=random.choice(cosmo_items),
+            offset_ticks=random.randint(20, 50))
                 for _ in range(1, int((height * weidth)/NUMBER_FOR_COUNTING_STARS))
         ]
     return many_stars_blink
@@ -37,13 +38,20 @@ def start_game(canvas, height, weidth):
     ]
     
     while True:
+        dead_coroutines = []
         try:
             for coro in coroutines.copy():
                 coro.send(None)
         except StopIteration:
-            break
+            dead_coroutines.append(coro)
+            
+        for dead_coro in dead_coroutines:
+            coroutines.remove(dead_coro)
         
         time.sleep(0.1)
+        
+        if not coroutines:
+            break
         
     
 
